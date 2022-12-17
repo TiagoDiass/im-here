@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
+import { Participant } from "../../components/Participant/Participant";
 import { AddParticipantForm } from "./Elements/AddParticipantForm/AddParticipantForm";
 import { styles } from "./Home.styles";
 
@@ -20,6 +21,13 @@ export function Home() {
     setParticipants((prev) => [...prev, newParticipantName]);
   };
 
+  const handleDeleteParticipant = (participantIndex: number) => {
+    const newParticipants = [...participants];
+    newParticipants.splice(participantIndex, 1);
+
+    setParticipants(newParticipants);
+  };
+
   return (
     <View style={styles.container}>
       <Text style={styles.eventName}>ReactConf 2022</Text>
@@ -29,9 +37,11 @@ export function Home() {
 
       <FlatList
         renderItem={({ item, index }) => (
-          <Text key={index} style={styles.list}>
-            {item}
-          </Text>
+          <Participant
+            key={item}
+            participantName={item}
+            handleDeleteParticipant={() => handleDeleteParticipant(index)}
+          />
         )}
         data={participants}
       />

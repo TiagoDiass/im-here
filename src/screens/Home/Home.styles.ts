@@ -18,8 +18,4 @@ export const styles = StyleSheet.create({
     color: "#6B6B6B",
     fontSize: 16,
   },
-
-  list: {
-    color: "#fff",
-  },
 });
