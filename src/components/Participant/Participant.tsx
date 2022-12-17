@@ -11,11 +11,11 @@ export function Participant({
   handleDeleteParticipant,
 }: ParticipantProps) {
   return (
-    <View>
-      <Text style={{ color: "#fff" }}>{participantName}</Text>
+    <View style={styles.container}>
+      <Text style={styles.participantName}>{participantName}</Text>
 
       <TouchableOpacity style={styles.button} onPress={handleDeleteParticipant}>
-        <Text style={styles.buttonText}>Excluir</Text>
+        <Text style={styles.buttonText}>-</Text>
       </TouchableOpacity>
     </View>
   );
