@@ -11,17 +11,13 @@ import { AddParticipantForm } from "./Elements/AddParticipantForm/AddParticipant
 import { styles } from "./Home.styles";
 
 export function Home() {
-  const [participants, setParticipants] = useState<string[]>([
-    "Tiago",
-    "Beatriz",
-    "Lucas",
-  ]);
+  const [participants, setParticipants] = useState<string[]>([]);
 
   const handleAddParticipant = (newParticipantName: string) => {
     setParticipants((prev) => [...prev, newParticipantName]);
   };
 
-  const handleDeleteParticipant = (participantIndex: number) => {
+  const handleRemoveParticipant = (participantIndex: number) => {
     const newParticipants = [...participants];
     newParticipants.splice(participantIndex, 1);
 
@@ -36,14 +32,20 @@ export function Home() {
       <AddParticipantForm handleAddParticipant={handleAddParticipant} />
 
       <FlatList
+        data={participants}
+        keyExtractor={(item) => item}
         renderItem={({ item, index }) => (
           <Participant
-            key={item}
             participantName={item}
-            handleDeleteParticipant={() => handleDeleteParticipant(index)}
+            handleRemoveParticipant={() => handleRemoveParticipant(index)}
           />
         )}
-        data={participants}
+        showsVerticalScrollIndicator={false}
+        ListEmptyComponent={() => (
+          <Text style={styles.emptyListText}>
+            Seu evento ainda não tem nenhum participante
+          </Text>
+        )}
       />
     </View>
   );

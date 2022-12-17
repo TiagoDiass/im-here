@@ -18,4 +18,10 @@ export const styles = StyleSheet.create({
     color: "#6B6B6B",
     fontSize: 16,
   },
+
+  emptyListText: {
+    color: "#6B6B6B",
+    fontSize: 14,
+    textAlign: "center",
+  },
 });
