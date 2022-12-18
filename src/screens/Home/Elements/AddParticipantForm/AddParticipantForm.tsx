@@ -18,12 +18,6 @@ export function AddParticipantForm({
 }: AddParticipantFormProps) {
   const [participantName, setParticipantName] = useState("");
 
-  const handleParticipantNameChange = (
-    event: NativeSyntheticEvent<TextInputChangeEventData>
-  ) => {
-    setParticipantName(event.nativeEvent.text);
-  };
-
   const handleAddParticipant = () => {
     handleAddParticipantCallback(participantName);
     setParticipantName("");
@@ -36,7 +30,7 @@ export function AddParticipantForm({
         placeholder="Nome do participante"
         placeholderTextColor="#6b6b6b"
         value={participantName}
-        onChange={handleParticipantNameChange}
+        onChangeText={setParticipantName}
       />
 
       <TouchableOpacity style={styles.button} onPress={handleAddParticipant}>
